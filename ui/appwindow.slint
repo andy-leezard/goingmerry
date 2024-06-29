@@ -1,16 +1,16 @@
 import { Button, VerticalBox } from "std-widgets.slint";
 
 export component AppWindow inherits Window {
-    in-out property<int> counter: 42;
-    callback request-increase-value();
+    in-out property<string> current_dir: "/";
+    callback set-current-dir();
     VerticalBox {
         Text {
-            text: "Counter: \{root.counter}";
+            text: "Current directory: \{root.current_dir}";
         }
         Button {
-            text: "Increase value";
+            text: "a button";
             clicked => {
-                root.request-increase-value();
+                root.set-current-dir();
             }
         }
     }

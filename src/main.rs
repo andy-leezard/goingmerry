@@ -1,15 +1,19 @@
 slint::include_modules!();
+use std::env;
 
 fn main() -> Result<(), slint::PlatformError> {
     let ui = AppWindow::new()?;
 
-    ui.on_request_increase_value({
+    fn update_current_dir(ui: &AppWindow) {
         let ui_handle = ui.as_weak();
-        move || {
+        (move || {
             let ui = ui_handle.unwrap();
-            ui.set_counter(ui.get_counter() + 1);
-        }
-    });
-
+            let cwd = env::current_dir().unwrap();
+            let path: String = String::from(cwd.display().to_string());
+            ui.set_current_dir(slint::SharedString::from(path));
+        })()
+    }
+    
+    update_current_dir(&ui);
     ui.run()
 }
