@@ -12,3 +12,10 @@ slint = "1.6"
 
 [build-dependencies]
 slint-build = "1.6"
+
+[package.metadata.packager]
+before-packaging-command = "cargo build --release"
+product-name = "Goingmerry"
+identifier = "com.alee.goingmerry"
+resources = ["Cargo.toml", "src", "128x128.png"]
+icons = ["128x128.png"]
