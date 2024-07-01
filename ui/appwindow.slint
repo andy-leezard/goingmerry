@@ -1,17 +1,18 @@
 import { Button, VerticalBox } from "std-widgets.slint";
 
 export component AppWindow inherits Window {
-    in-out property<string> current_dir: "/";
+    in-out property<string> current_dir: "loading...";
     callback set-current-dir();
+    callback open-folder();
     VerticalBox {
         Text {
             text: "Current directory: \{root.current_dir}";
         }
-        /* Button {
-            text: "a button";
+        Button {
+            text: "Open a folder";
             clicked => {
-                root.set-current-dir();
+                root.open-folder();
             }
-        } */
+        }
     }
 }
